@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Imobiliário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Imóveis Disponíveis</h1>
+    <div id="imoveis-container" class="grid"></div>
+
+    <dialog id="modal-agendamento">
+        <form id="form-agendamento">
+            <h3>Agendar Visita</h3>
+            <input type="hidden" id="imovel-id">
+            <input type="text" id="nome" placeholder="Seu Nome" required>
+            <input type="email" id="email" placeholder="Seu E-mail" required>
+            <input type="tel" id="telefone" placeholder="Telefone" required>
+            <input type="datetime-local" id="data_hora" required>
+            <button type="submit">Confirmar</button>
+            <button type="button" onclick="modal.close()">Cancelar</button>
+        </form>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>
