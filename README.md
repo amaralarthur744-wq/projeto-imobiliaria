@@ -1,27 +1,28 @@
-# 🏡 Projeto Imobiliária
+# 🏡 Portal Imobiliário
 
-Sistema web voltado para o setor imobiliário, desenvolvido com o objetivo de gerenciar e facilitar a visualização, cadastro e anúncio de imóveis.
+Sistema web completo para o setor imobiliário, desenvolvido com front-end dinâmico e back-end em Node.js com TypeScript, integrado a um banco de dados MySQL.
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-Este projeto foi desenvolvido utilizando as seguintes tecnologias:
-* **HTML5 / CSS3 / JavaScript** (ou frameworks modernos como React / TypeScript, dependendo da sua stack)
-* **Node.js**
-* **Git e GitHub** para controle de versão
+Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
+
+* **Node.js** com **Express** (Back-end)
+* **TypeScript** (`tsx`)
+* **MySQL / XAMPP** (Banco de dados relacional)
+* **HTML5 / CSS3 / JavaScript** (Front-end)
+* **Git e GitHub** (Controle de versão)
 
 ---
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
-Siga os passos abaixo para clonar e executar o projeto na sua máquina:
+Siga os passos abaixo para configurar e executar a aplicação na sua máquina:
 
 1. **Clone o repositório:**
    ```bash
    git clone [https://github.com/amaralarthur744-wq/projeto-imobiliaria.git](https://github.com/amaralarthur744-wq/projeto-imobiliaria.git)
-
-
 Entre na pasta do projeto:
 Bash
 cd projeto-imobiliaria
@@ -30,15 +31,23 @@ Instale as dependências:
 Bash
 npm install
 
-Inicie o projeto:
+Inicie o Banco de Dados (MySQL):
+Abra o painel do XAMPP e inicie o módulo MySQL e o Apache.
+
+Execute a aplicação:
 Bash
-npm run dev
-(ou o comando específico que você utiliza para iniciar sua aplicação)
+npm start
+
+Acesse no navegador:
+Abra o seu navegador e acesse: http://localhost:3000
 
 📌 Funcionalidades
-Visualização de imóveis disponíveis.
+Listagem dinâmica de imóveis cadastrados no banco de dados.
 
-Estrutura organizada para futuras integrações de cadastro e busca.
+Conexão e integração completa entre o servidor Node.js/TypeScript e MySQL.
+
+Interface moderna e responsiva para visualização de portfólio imobiliário.
 
 👤 Autor
 Desenvolvido por Arthur Amaral.
+
