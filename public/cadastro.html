@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - SENAI Imóveis</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { display: flex; min-height: 100vh; background: #0c2340; color: #333; }
+        
+        .hero-banner { flex: 1; padding: 60px; color: white; display: flex; flex-direction: column; justify-content: center; }
+        .hero-banner h1 { font-size: 2.8rem; margin-bottom: 15px; }
+        .hero-banner p { font-size: 1.2rem; opacity: 0.9; }
+
+        .card-cadastro { width: 420px; background: white; margin: 40px; padding: 32px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        
+        .toggle-type { display: flex; gap: 10px; margin-bottom: 20px; }
+        .btn-toggle { border: 1px solid #cbd5e1; background: transparent; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; color: #475569; }
+        .btn-toggle.active { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; color: #1e293b; }
+        .input-field { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; outline: none; }
+        .input-field:focus { border-color: #2563eb; }
+
+        .phone-group { display: flex; gap: 8px; }
+        .phone-prefix { width: 70px; text-align: center; }
+        .phone-area { width: 70px; }
+
+        .btn-primary { width: 100%; background: #2563eb; color: white; border: none; padding: 14px; border-radius: 25px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        .btn-primary:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-banner">
+        <h1>Anuncie ou Encontre seu Imóvel no SENAI Imóveis</h1>
+        <p>A forma mais rápida, prática e segura de alugar ou comprar imóveis.</p>
+    </div>
+
+    <div class="card-cadastro">
+        <div class="toggle-type">
+            <button class="btn-toggle active" type="button">Endereço</button>
+            <button class="btn-toggle" type="button">CEP</button>
+        </div>
+
+        <form action="cadastrar_usuario.php" method="POST">
+            <div class="form-group">
+                <label>CEP</label>
+                <input type="text" name="cep" class="input-field" placeholder="_____-___" required>
+            </div>
+
+            <div class="form-group">
+                <label>Endereço Completo</label>
+                <input type="text" name="endereco" class="input-field" placeholder="Rua, número, bairro..." required>
+            </div>
+
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" name="nome" class="input-field" placeholder="Seu nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>Celular</label>
+                <div class="phone-group">
+                    <input type="text" class="input-field phone-prefix" value="+55" readonly>
+                    <input type="text" name="ddd" class="input-field phone-area" placeholder="DDD" maxlength="2" required>
+                    <input type="text" name="celular" class="input-field" placeholder="Celular" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Começar cadastro</button>
+        </form>
+    </div>
+
+</body>
+</html>

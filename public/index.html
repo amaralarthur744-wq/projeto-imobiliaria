@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENAI Imóveis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Container para Toasts (Notificações) -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <h2>🏢 SENAI <span>Imóveis</span></h2>
+        </div>
+        <div class="user-info">
+            <button class="btn-perfil" id="btnMeusAgendamentos" onclick="abrirModalMeusAgendamentos()">
+                📅 Agendamentos
+            </button>
+            <button class="btn-perfil" id="btnPerfil" onclick="abrirModalPerfil()">
+                👤 <span id="headerNome">Convidado</span>
+            </button>
+            <button class="btn-sair" id="btnSair" onclick="fazerLogout()">Cadastrar-se</button>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero-quintoandar" id="heroSection">
+        <div class="hero-texto-topo">
+            <h1>Encontre o imóvel dos seus sonhos</h1>
+            <p>As melhores opções de casas e apartamentos com praticidade, conforto e segurança</p>
+        </div>
+
+        <div class="hero-container-flex">
+            <!-- Banner Carrossel -->
+            <div class="banner-box" id="bannerImovel">
+                <img id="bannerFoto" src="" alt="Destaque Imóvel" class="banner-img">
+                <div class="banner-info">
+                    <span class="badge-destaque">EM DESTAQUE</span>
+                    <h3 id="bannerTitulo">Carregando...</h3>
+                    <p id="bannerLocal">📍 Carregando...</p>
+                    <div class="banner-preco" id="bannerPreco">R$ 0,00</div>
+                </div>
+            </div>
+
+            <!-- Card de Cadastro -->
+            <div class="card-cadastro" id="cardCadastro">
+                <h3>Cadastre-se para negociar</h3>
+                <p class="subtitulo-card">Alugue ou compre seu imóvel sem complicação.</p>
+                
+                <form id="formCadastro">
+                    <input type="text" id="cadCep" placeholder="CEP (00000-000)" required>
+                    <input type="text" id="cadEndereco" placeholder="Endereço Completo" required>
+                    <input type="text" id="cadNome" placeholder="Seu Nome Completo" required>
+                    
+                    <div class="input-row phone-row">
+                        <input type="text" value="+55" readonly class="prefixo-phone">
+                        <input type="text" id="cadDdd" placeholder="DDD" maxlength="2" required class="ddd-phone">
+                        <input type="tel" id="cadCelular" placeholder="Celular" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btnCadastrar">Começar cadastro</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vitrine de Imóveis -->
+    <main class="container-vitrine">
+        <div class="vitrine-header">
+            <h2>Catálogo de Imóveis Disponíveis</h2>
+            
+            <div class="filtros-bar">
+                <input type="text" id="inputBusca" placeholder="🔍 Buscar por nome ou bairro..." oninput="filtrarImoveis()">
+                <select id="selectCategoria" onchange="filtrarImoveis()">
+                    <option value="TODOS">Todas as Categorias</option>
+                    <option value="FAVORITOS">❤️ Meus Favoritos</option>
+                    <option value="CASA">Casas</option>
+                    <option value="APARTAMENTO">Apartamentos</option>
+                    <option value="COBERTURA">Coberturas</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid-imoveis" id="gridImoveis"></div>
+    </main>
+
+    <!-- Modal Detalhes -->
+    <div class="modal-overlay" id="modalImovel">
+        <div class="modal-card">
+            <button class="modal-close" onclick="fecharModal()">&times;</button>
+            <img id="modalFoto" class="modal-img" src="" alt="Foto do Imóvel">
+            
+            <div class="modal-body">
+                <span id="modalCategoria" class="badge-tipo">CASA</span>
+                <h2 id="modalTitulo">Título do Imóvel</h2>
+                <p id="modalLocal" class="modal-local">📍 Localização</p>
+                <p id="modalDescricao" class="modal-desc">Descrição</p>
+
+                <div class="modal-preco-container">
+                    <span class="label-preco">Valor do Aluguel:</span>
+                    <div id="modalPreco" class="preco-destaque">R$ 0,00</div>
+                    <div id="modalParcelas" class="parcelas-tag">💳 3x de R$ 0,00 sem juros</div>
+                </div>
+
+                <div id="alertaHabitado" class="alerta-ocupado hidden">
+                    ⚠️ <strong>Imóvel Indisponível:</strong> Este imóvel já possui moradores no momento.
+                </div>
+
+                <div class="modal-acoes">
+                    <button class="btn-acao btn-visita" id="btnMarcarVisita" onclick="marcarVisita()">📅 Marcar Visita</button>
+                    <button id="btnAlugar" class="btn-acao btn-alugar" onclick="efetuarAluguel()">🔑 Alugar Imóvel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agendamento de Visita -->
+    <div class="modal-overlay" id="modalAgendamento">
+        <div class="modal-card">
+            <button class="modal-close" onclick="fecharModalAgendamento()">&times;</button>
+            <div class="modal-body">
+                <h2>📅 Agendar Visita Presencial</h2>
+                <p id="agendamentoTituloImovel" class="subtitulo-agendamento"></p>
+                
+                <form id="formAgendamento">
+                    <div class="campo-agendamento">
+                        <label for="dataVisita">Data da Visita:</label>
+                        <input type="date" id="dataVisita" required>
+                    </div>
+
+                    <div class="campo-agendamento">
+                        <label for="horaVisita">Horário da Visita:</label>
+                        <input type="time" id="horaVisita" min="07:00" max="17:00" required>
+                    </div>
+
+                    <div class="regras-agendamento">
+                        <p>🕒 <strong>Horário permitido:</strong> Segunda a Sábado, das 07h às 17h.<br>🚫 Não realizamos visitas aos domingos.</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btnConfirmarAgendamento">Confirmar Agendamento</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Minhas Visitas Agendadas -->
+    <div class="modal-overlay" id="modalMeusAgendamentos">
+        <div class="modal-card modal-agendamentos-box">
+            <button class="modal-close" onclick="fecharModalMeusAgendamentos()">&times;</button>
+            <div class="modal-body">
+                <h2>📅 Minhas Visitas Agendadas</h2>
+                <p class="subtitulo-agendamento">Confira abaixo os detalhes das suas visitas confirmadas:</p>
+                
+                <div id="listaAgendamentos" class="lista-agendamentos"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Perfil -->
+    <div class="modal-overlay" id="modalPerfil">
+        <div class="modal-card modal-perfil-box">
+            <button class="modal-close" onclick="fecharModalPerfil()">&times;</button>
+            <div class="modal-body">
+                <h2>👤 Meu Perfil</h2>
+                
+                <div class="perfil-info-box">
+                    <p><strong>Nome:</strong> <span id="perfilNome">-</span></p>
+                    <p><strong>CEP:</strong> <span id="perfilCep">-</span></p>
+                    <p><strong>Endereço:</strong> <span id="perfilEndereco">-</span></p>
+                    <p><strong>Celular:</strong> <span id="perfilCelular">-</span></p>
+                </div>
+
+                <hr class="divisor-modal">
+
+                <button type="button" class="btn-toggle-senha" id="btnToggleSenha" onclick="toggleAreaSenha()">
+                    🔑 Deseja alterar sua senha?
+                </button>
+
+                <div id="areaAlterarSenha" class="area-senha-box hidden">
+                    <form id="formAlterarSenha">
+                        <input type="password" id="senhaAtual" placeholder="Senha Atual" required>
+                        <input type="password" id="novaSenha" placeholder="Nova Senha" required>
+                        <input type="password" id="confirmaSenha" placeholder="Confirmar Nova Senha" required>
+                        
+                        <div class="regras-senha">
+                            <p>🔒 <strong>Segurança:</strong> Sua senha será criptografada (SHA-256) antes de ser armazenada.</p>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="btnSalvarSenha">Salvar Nova Senha</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
