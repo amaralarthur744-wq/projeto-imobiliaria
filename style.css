@@ -1,0 +1,173 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-main: #f8fafc;
+    --bg-dark: #0c2340;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --success: #16a34a;
+    --danger: #ef4444;
+    --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-main); color: var(--text-dark); }
+
+/* Toasts */
+.toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: var(--text-dark); color: white; padding: 12px 20px; border-radius: 8px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: slideIn 0.3s ease; }
+.toast.sucesso { background: var(--success); }
+.toast.erro { background: var(--danger); }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* Header & Hero */
+.navbar { background: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+.logo h2 { color: var(--bg-dark); } .logo span { color: var(--primary); }
+.user-info { display: flex; gap: 10px; align-items: center; }
+.btn-perfil { background: #eff6ff; color: var(--primary); border: 1px solid #bfdbfe; padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-perfil:hover { background: #dbeafe; }
+.btn-sair { background: #fef2f2; color: var(--danger); border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+.btn-sair.btn-entrar { background: var(--primary); color: white; }
+
+.hero-quintoandar { background-color: var(--bg-dark); padding: 45px 20px 55px; display: flex; flex-direction: column; align-items: center; }
+.hero-texto-topo { text-align: center; color: white; margin-bottom: 30px; }
+.hero-container-flex { display: flex; justify-content: center; gap: 30px; width: 100%; flex-wrap: wrap; }
+.hero-quintoandar.cadastrado .banner-box { max-width: 850px; height: 420px; }
+
+.banner-box { width: 100%; max-width: 600px; height: 380px; position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; }
+.banner-img { width: 100%; height: 100%; object-fit: cover; }
+.banner-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; }
+.badge-destaque { background: var(--primary); font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px; }
+
+.card-cadastro { background: white; padding: 28px; border-radius: 16px; width: 100%; max-width: 380px; display: flex; flex-direction: column; }
+.subtitulo-card { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 18px; }
+.card-cadastro form, #formAlterarSenha { display: flex; flex-direction: column; gap: 12px; }
+.card-cadastro input, #formAlterarSenha input { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; }
+.phone-row { display: flex; gap: 6px; }
+.prefixo-phone { width: 55px !important; text-align: center; background: #f1f5f9; }
+.ddd-phone { width: 65px !important; text-align: center; }
+.btn-submit { background-color: var(--primary); color: white; border: none; padding: 13px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s ease; }
+.btn-submit:hover { background-color: var(--primary-hover); }
+
+/* Vitrine e Filtros */
+.container-vitrine { max-width: 1150px; margin: 40px auto; padding: 0 20px; }
+.vitrine-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
+.filtros-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+.filtros-bar input, .filtros-bar select { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.9rem; outline: none; }
+.filtros-bar input { min-width: 260px; }
+
+.grid-imoveis { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+.card-imovel { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.25s ease, box-shadow 0.25s ease; position: relative; }
+.card-imovel:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.card-img-wrap { height: 200px; position: relative; }
+.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.badge-tipo { position: absolute; top: 12px; left: 12px; background: rgba(15, 23, 42, 0.85); color: white; font-size: 0.7rem; font-weight: bold; padding: 4px 10px; border-radius: 12px; }
+.badge-status-ocupado { position: absolute; top: 12px; right: 50px; background: var(--danger); color: white; font-size: 0.7rem; font-weight: bold; padding: 4px 8px; border-radius: 6px; }
+
+.btn-favorito { position: absolute; top: 10px; right: 10px; background: white; border: none; font-size: 1.2rem; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: transform 0.2s; }
+.btn-favorito:hover { transform: scale(1.1); }
+.btn-favorito.ativo { color: var(--danger); }
+
+.card-content { padding: 18px; }
+.card-local { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
+.card-preco { font-size: 1.2rem; font-weight: bold; color: var(--success); margin-bottom: 15px; }
+.btn-card { width: 100%; padding: 10px; border: none; border-radius: 8px; background: var(--primary); color: white; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+
+/* Modais Geral */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; z-index: 1000; }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-card { background: white; border-radius: 16px; width: 90%; max-width: 520px; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(15px); transition: transform 0.35s ease; }
+.modal-overlay.active .modal-card { transform: translateY(0); }
+
+.modal-close { position: absolute; top: 12px; right: 15px; background: rgba(0,0,0,0.5); color: white; border: none; font-size: 1.5rem; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; z-index: 10; }
+.modal-img { width: 100%; height: 230px; object-fit: cover; }
+.modal-body { padding: 24px; }
+.modal-preco-container { background: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 15px; }
+.preco-destaque { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+.parcelas-tag { font-size: 0.85rem; color: var(--success); font-weight: 600; }
+.alerta-ocupado { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; padding: 10px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 15px; }
+.hidden { display: none !important; }
+.modal-acoes { display: flex; gap: 10px; }
+.btn-acao { flex: 1; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; transition: all 0.25s ease; }
+.btn-visita { background: #e2e8f0; color: var(--text-dark); }
+.btn-visita:hover { background: #cbd5e1; }
+.btn-alugar { background: var(--primary); color: white; }
+.btn-alugar:hover { background: var(--primary-hover); }
+
+/* Agendamento de Visita Form */
+.subtitulo-agendamento { color: var(--text-muted); margin-bottom: 15px; font-weight: 600; font-size: 0.9rem; }
+.campo-agendamento { display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px; text-align: left; }
+.campo-agendamento label { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); }
+.campo-agendamento input { padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; }
+.regras-agendamento { font-size: 0.8rem; color: var(--text-muted); background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px; border-radius: 8px; margin-bottom: 15px; line-height: 1.5; }
+
+/* Lista da Tela de Agendamentos (Cards Individuais) */
+.modal-agendamentos-box { max-width: 580px; }
+.lista-agendamentos { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; }
+
+.card-agendamento-item {
+    display: flex;
+    gap: 15px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    align-items: center;
+    position: relative;
+}
+
+.img-agendamento {
+    width: 100px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.info-agendamento {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-agendamento h4 {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.info-agendamento p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.badge-consultor {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 12px;
+    width: fit-content;
+    margin-top: 2px;
+}
+
+.btn-cancelar-agendamento {
+    background: #fef2f2;
+    color: var(--danger);
+    border: 1px solid #fca5a5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+}
+
+.btn-cancelar-agendamento:hover {
+    background: #fee2e2;
+}
+
+/* Animação de Carregamento nos Botões */
+.btn-loading { opacity: 0.75; cursor: wait !important; }
