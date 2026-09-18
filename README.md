@@ -1,6 +1,5 @@
 # 🏢 Portal Imobiliário
-
-![Ver Demonstração:] [https://img.shields.io/badge/Projeto-Aceder%20ao%20Site-brightgreen?style=for-the-badge)](https://amaralarthur744-wq.github.io/projeto-imobiliaria/)
+[Ver Demonstração](https://amaralarthur744-wq.github.io/projeto-imobiliaria/)
 
 Uma aplicação web para visualização de imóveis, agendamento de visitas e gestão de usuários, composta por uma interface interativa no front-end e uma API desenvolvida em Node.js com TypeScript no back-end.
 
